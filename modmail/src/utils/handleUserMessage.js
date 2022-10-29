@@ -84,7 +84,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         const mainGuildMemberRoles = [];
         let extraRoles;
         mainGuildMember.roles.cache.forEach(role => {
-            mainGuildMemberRoles.push(role.toString());
+            mainGuildMemberRoles.push(role.name);
         })
 
         if (mainGuildMemberRoles.length > 19) {
@@ -95,7 +95,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
             .setColor('Green')
             .setTitle('Thread created')
             .setThumbnail(message.author.displayAvatarURL({ extension: 'png' }))
-            .setDescription(`Use \`\`!r\`\` or \`\`!ar\`\` to reply`)
+            .setDescription(`Use \`\`!reply\`\` or \`\`!anonreply\`\` to reply`)
             .addFields(
                 { name: 'User', value: mainGuildMember?.toString(), inline: true },
                 { name: 'UserID', value: mainGuildMember?.id, inline: true },
