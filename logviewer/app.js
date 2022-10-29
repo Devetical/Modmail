@@ -31,25 +31,15 @@ module.exports = async() => {
     }
 
     if (process.env.LOGVIEWER_HTTPS === 'true') {
-        if (!process.env.LOGVIEWER_HTTPS_PORT) {
-            console.log(`[LOGVIEWER]`.red + ` HTTPS is enabled but no port was specified. Aborting...`);
-            return process.exit(1);
-        }
-
         https.createServer({
             key: readFileSync(`/etc/letsencrypt/live/${process.env.LOGVIEWER_URL}/privkey.pem`),
             cert: readFileSync(`/etc/letsencrypt/live/${process.env.LOGVIEWER_URL}/fullchain.pem`),
-        }, app).listen(process.env.LOGVIEWER_HTTPS_PORT, () => {
-            console.log(`[LOGVIEWER]`.green + ` Listening on port ${process.env.LOGVIEWER_HTTPS_PORT} - https://${process.env.LOGVIEWER_URL}/`);
+        }, app).listen(443, () => {
+            console.log(`[LOGVIEWER]`.green + ` Listening on port 443 - https://${process.env.LOGVIEWER_URL}/`);
         });
     } else {
-        if (!process.env.LOGVIEWER_HTTP_PORT) {
-            console.log(`[LOGVIEWER]`.red + ` HTTP is enabled but no port was specified. Aborting...`);
-            return process.exit(1);
-        }
-
-        http.createServer(app).listen(process.env.LOGVIEWER_HTTP_PORT, () => {
-            console.log(`[LOGVIEWER]`.green + ` Listening on port ${process.env.LOGVIEWER_HTTP_PORT} - http://${process.env.LOGVIEWER_URL}/`);
+        http.createServer(app).listen(80, () => {
+            console.log(`[LOGVIEWER]`.green + ` Listening on port 80 - http://${process.env.LOGVIEWER_URL}/`);
         });
     }
 
