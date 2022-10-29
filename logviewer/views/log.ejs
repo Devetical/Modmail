@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- title %>
+        <%- icon %>
+        <%- meta %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi">
+    </head>
+    <style>
+        body {
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+            padding-top: 2.5%;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1vw;
+        }
+
+        
+        .threadInfo {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .p {
+            padding: 1px;
+        }
+
+        .message{
+            padding-bottom: 5px;
+            inline-size: 100%;
+            overflow-wrap: break-word;
+            line-height: 1.5vw;
+        }
+
+        /* round the img class of messages to circles with the same height as the message line */
+        .message img {
+            border-radius: 25%;
+            width: 1.5vw;
+            height: 1.5vw;
+        }
+
+        code {
+            background-color: lightgray;
+            border-radius: 3px;
+            padding: 2px;
+        }
+
+        .spoiler {
+            color: black;
+            background-color: black;
+            border-radius: 3px;
+            padding: 2px;
+        }
+
+        .spoiler:hover {
+            color: white;
+        }
+    </style>
+    <body>
+        <div class="threadInfo card shadow">
+            <%- image %>
+            <%- threadInfo %>
+            <hr style="width: 20%; height: 1.5px; color: black; background-color: black;">
+        </div>
+
+        <% messages.forEach(function(message) { %>
+            <div class="message">
+                <!-- create a regex that will capture anything within <script> tags -->
+                <% var scriptRegex = /<script>([\s\S]*?)<\/script>/g; %>
+                <% var imgRegex = /<img src="([\c\C]*?)">/g; %>
+                <img src="<%- message.avatar %>" style="border-radius: 15px; padding-right: 2.5px;"><b><%- message.user %> <%- message.internal ? " (staff)" : "" %></b> - <%- message.content
+                    .replace(scriptRegex, '[script in message]')
+                    .replace(imgRegex, '[image in message]') %>
+            </div>
+        <% }) %>
+    </body>
+</html>

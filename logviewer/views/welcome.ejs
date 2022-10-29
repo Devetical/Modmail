@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modmail Logviewer</title>
+        <%- meta %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi">
+    </head>
+    <style>
+        .threadInfo {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .subtext {
+            color: #999;
+        }
+    </style>
+    <body>
+        <div class="threadInfo">
+            <%- image %>
+            <h1>Welcome to modmail's log viewer!</h1>
+            <p class="subtext">Please go to /logs/log_id to view logs</p>
+        </div>
+    </body>
+</html>
