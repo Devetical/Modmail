@@ -1,4 +1,4 @@
-module.exports.isThread = async (client, message) => {
+module.exports.isThread = async (client, message, guildData) => {
     const thread = await client.models.logs.findOne({ _id: message.channel.id });
     
     if (thread) {

@@ -26,7 +26,7 @@ class Anonreply extends Command {
             }
         })
         
-        return client.handleStaffMessage(client, message, args.join(' '), true);
+        return client.handleStaffMessage(client, message, args.join(' '), true, guildData);
     }
 }
 

@@ -26,7 +26,7 @@ class Reply extends Command {
             }
         })
 
-        return client.handleStaffMessage(client, message, args.join(' '), false);
+        return client.handleStaffMessage(client, message, args.join(' '), false, guildData);
     }
 }
 

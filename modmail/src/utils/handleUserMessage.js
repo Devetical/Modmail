@@ -22,7 +22,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         if (!threadLog) console.log(`[ERROR] No thread log found for ${thread.id}`.red);
 
         const userMessage = new EmbedBuilder()
-            .setColor('Green')
+            .setColor(guildData.config.user_embed_color)
             .setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ extension: 'png' }) })
             .setDescription(message.content)
             .setTimestamp()
@@ -61,7 +61,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         } catch (err) {
             console.log(`[ERROR]`.red + ` Failed to create thread for ${message.author.username}#${message.author.discriminator} (${message.author.id})`);
             try {
-                const fallback = guildData.categories.find(c => c.name === 'fallback');
+                const fallback = guildData.categories.find(c => c.id === guildData.fallback_category);
 
                 if (fallback) {
                     await guild.channels.create({
@@ -92,7 +92,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         }
 
         const threadCreatedEmbed = new EmbedBuilder()
-            .setColor('Green')
+            .setColor(guildData.config.user_embed_color)
             .setTitle('Thread created')
             .setThumbnail(message.author.displayAvatarURL({ extension: 'png' }))
             .setDescription(`Use \`\`!reply\`\` or \`\`!anonreply\`\` to reply`)
@@ -104,7 +104,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
             )
         
         const threadCreatedUserMessage = new EmbedBuilder()
-            .setColor('Green')
+            .setColor(guildData.config.user_embed_color)
             .setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ extension: 'png' }) })
             .setDescription(message.content)
             .setTimestamp()
@@ -112,13 +112,13 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         const threadCreatedUserEmbed = new EmbedBuilder()
             .setColor('Green')
             .setTitle('Thread created')
-            .setDescription(`Thanks for contacting modmail! Staff will reply shortly`)
+            .setDescription(guildData.config.thread_created_message)
 
-        thread.send({ content: '@here', embeds: [ threadCreatedEmbed ] });
+        guildData.config.ping_role_on_thread_creation ? thread.send({ content: guildData.config.ping_role_on_thread_creation_role, embeds: [ threadCreatedEmbed ] }) : thread.send({ embeds: [ threadCreatedEmbed ] });
         thread.send({ embeds: [ threadCreatedUserMessage ] });
         message.author.send({ embeds: [ threadCreatedUserEmbed ] });
 
-        const threadLog = new client.models.Log({ _id: thread.id, user: `${message.author.tag} (${message.author.id})` });
+        const threadLog = new client.models.Log({ _id: thread.id, user: `${message.author.tag} (${message.author.id})`, guild_id: guildData._id });
 
         threadLog.messages.push({
             user: message.author.username + '#' + message.author.discriminator,

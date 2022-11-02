@@ -19,7 +19,7 @@ class Subscribe extends Command {
             }
         })
         
-        return client.handleThreadSubscription(client, message, 'add');
+        return client.handleThreadSubscription(client, message, 'add', guildData);
     }
 }
 

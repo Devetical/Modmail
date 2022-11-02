@@ -19,7 +19,7 @@ class Unalert extends Command {
             }
         })
         
-        return client.handleThreadAlert(client, message, 'remove');
+        return client.handleThreadAlert(client, message, 'remove', guildData);
     }
 }
 

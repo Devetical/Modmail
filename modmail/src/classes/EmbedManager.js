@@ -13,7 +13,7 @@ class EmbedManager {
             .setColor('Green')
             .setDescription('<:success:993459347021631498> ' + options.description)
         
-            if (options.author && typeof options.author === 'boolean') embed.setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ format: 'png' })})
+        if (options.author && typeof options.author === 'boolean') embed.setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ format: 'png' })})
         if (options.footer && typeof options.footer === 'object') embed.setFooter(options.footer)
         if (options.title && typeof options.title === 'string') embed.setTitle(options.title)
         if (options.thumbnail && typeof options.title === 'string') embed.setThumbnail(options.thumbnail)
