@@ -112,7 +112,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         const threadCreatedUserEmbed = new EmbedBuilder()
             .setColor('Green')
             .setTitle('Thread created')
-            .setDescription(guildData.config.thread_created_message)
+            .setDescription(guildData.config.thread_creation_message)
 
         guildData.config.ping_role_on_thread_creation ? thread.send({ content: guildData.config.ping_role_on_thread_creation_role, embeds: [ threadCreatedEmbed ] }) : thread.send({ embeds: [ threadCreatedEmbed ] });
         thread.send({ embeds: [ threadCreatedUserMessage ] });
