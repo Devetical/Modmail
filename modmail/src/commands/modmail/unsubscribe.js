@@ -19,7 +19,7 @@ class Unsubscribe extends Command {
             }
         })
         
-        return client.handleThreadSubscription(client, message, 'remove');
+        return client.handleThreadSubscription(client, message, 'remove', guildData);
     }
 }
 

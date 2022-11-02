@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 
-module.exports.handleStaffMessage = async (client, message, args, anonymous) => {
+module.exports.handleStaffMessage = async (client, message, args, anonymous, guildData) => {
     const isThread = await client.isThread(client, message);
 
     if (!isThread) { return client.embeds.error({
@@ -12,7 +12,7 @@ module.exports.handleStaffMessage = async (client, message, args, anonymous) => 
     }
 
     const staffMessage = new EmbedBuilder()
-        .setColor('Green')
+        .setColor(guildData.config.staff_embed_color)
         .setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ format: 'png' }) })
         .setDescription(args)
         .setTimestamp()
@@ -20,8 +20,8 @@ module.exports.handleStaffMessage = async (client, message, args, anonymous) => 
     if (anonymous) staffMessage.setFooter({ text: 'Anonymous Reply' });
     
     const userMessage = new EmbedBuilder()
-        .setColor('Green')
-        .setAuthor({ name: anonymous ? 'Staff Reply' : message.author.username, iconURL: anonymous ? client.user.displayAvatarURL({ extension: 'png' }) : message.author.displayAvatarURL({ extension: 'png' }) })
+        .setColor(guildData.config.staff_embed_color)
+        .setAuthor({ name: anonymous ? guildData.config.staff_anonymous_author_name : message.author.username, iconURL: anonymous ? guildData.config.staff_anonymous_author_icon : message.author.displayAvatarURL({ extension: 'png' }) })
         .setDescription(args)
     
     const thread = message.channel;
@@ -56,6 +56,10 @@ module.exports.handleStaffMessage = async (client, message, args, anonymous) => 
         internal: true,
         content: args
     })
+
+    if (guildData.config.auto_alert_last_response) {
+        await client.handleThreadAlert(client, message, 'add', guildData);
+    }
 
     await threadLog.markModified('messages');
     await threadLog.save();

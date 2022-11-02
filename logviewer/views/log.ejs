@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi">
     </head>
     <style>
+        :root {
+            --staff-color: <%- chroma(config.staff_embed_color) %>;
+            --user-color: <%- chroma(config.user_embed_color) %>;
+        }
         body {
             padding-left: 2.5%;
             padding-right: 2.5%;
@@ -25,18 +29,36 @@
             padding: 1px;
         }
 
-        .message{
-            padding-bottom: 5px;
+        /* card with light shadow around it for the message class */
+        .user-message {
+            position: relative;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: .75vw;
+            padding: 1vw;
+            margin: 1vw;
+            border-left: .75vw solid;
+            border-color: var(--user-color);
+        }
+
+        .staff-message {
+            position: relative;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: .75vw;
+            padding: 1vw;
+            margin: 1vw;
+            border-left: .75vw solid;
+            border-color: var(--staff-color);
+        }
+
+        .message message-text {
+            position: absolute;
             inline-size: 100%;
             overflow-wrap: break-word;
             line-height: 1.5vw;
-        }
-
-        /* round the img class of messages to circles with the same height as the message line */
-        .message img {
-            border-radius: 25%;
-            width: 1.5vw;
-            height: 1.5vw;
         }
 
         code {
@@ -56,22 +78,35 @@
             color: white;
         }
     </style>
-    <body>
+    <body style="background-color: lightgray;">
         <div class="threadInfo card shadow">
             <%- image %>
             <%- threadInfo %>
-            <hr style="width: 20%; height: 1.5px; color: black; background-color: black;">
+            <hr style="width: 20%; height: .15vw; border-width: 0px; color: black; background-color: black;">
         </div>
 
         <% messages.forEach(function(message) { %>
-            <div class="message">
-                <!-- create a regex that will capture anything within <script> tags -->
-                <% var scriptRegex = /<script>([\s\S]*?)<\/script>/g; %>
-                <% var imgRegex = /<img src="([\c\C]*?)">/g; %>
-                <img src="<%- message.avatar %>" style="border-radius: 15px; padding-right: 2.5px;"><b><%- message.user %> <%- message.internal ? " (staff)" : "" %></b> - <%- message.content
-                    .replace(scriptRegex, '[script in message]')
-                    .replace(imgRegex, '[image in message]') %>
-            </div>
+            <% var scriptRegex = /<script>([\s\S]*?)<\/script>/g; %>
+            <% var imgRegex = /<img src="([\c\C]*?)">/g; %>
+            <% if (message.internal) { %>
+                <div class="staff-message">
+                    <div class="message-author" style="padding-bottom: .5vw;">
+                        <img src="<%- message.avatar %>" style="border-radius: 50%; height: 1.25vw; width: 1.25vw; padding-right: 5px;"><b><%- message.user %> <%- message.internal ? " (staff)" : "" %></b> -
+                    </div>
+                    <div class="message-text">
+                        <%- message.content.replace(scriptRegex, '[script in message]').replace(imgRegex, '[image in message]') %>
+                    </div>
+                </div>
+            <% } else if (!message.internal) { %>
+                <div class="user-message">
+                    <div class="message-author" style="padding-bottom: .5vw;">
+                        <img src="<%- message.avatar %>" style="border-radius: 50%; height: 1.25vw; width: 1.25vw; padding-right: 5px;"><b><%- message.user %> <%- message.internal ? " (staff)" : "" %></b>
+                    </div>
+                    <div class="message-text">
+                        <%- message.content.replace(scriptRegex, '[script in message]').replace(imgRegex, '[image in message]').split('\n').join('<br>') %>
+                    </div>
+                </div>
+            <% } %> 
         <% }) %>
     </body>
 </html>

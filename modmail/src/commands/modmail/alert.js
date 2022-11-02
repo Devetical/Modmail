@@ -19,7 +19,7 @@ class Alert extends Command {
             }
         })
         
-        return client.handleThreadAlert(client, message, 'add');
+        return client.handleThreadAlert(client, message, 'add', guildData);
     }
 }
 

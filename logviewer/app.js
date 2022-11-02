@@ -8,6 +8,7 @@ const { join } = require('path')
 const https = require('https');
 const http = require('http');
 const imgUrl = process.env.LOGVIEWER_HTTPS ? `https://${process.env.LOGVIEWER_URL}/assets/mail.png` : `http://${process.env.LOGVIEWER_URL}/assets/mail.png`;
+const chroma = require('chroma-js');
 
 module.exports = async() => {
     const mongoConnect = async () => {
@@ -62,6 +63,7 @@ module.exports = async() => {
 
     app.get('/logs/:id', async (req, res) => {
         const log = await mongoose.model('Log').findOne({ _id: req.params.id });
+
         if (!log) {
             const meta = `
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +77,10 @@ module.exports = async() => {
 
             return res.render('nolog', { meta, image, log_id });
         }
-        
+
+        const guild = await mongoose.model('Guild').findOne({ _id: log.guild_id });
+        const config = guild.config;
+
         // Log found, render the page
         const threadInfo = `
             <h3>Thread Info -</h3>
@@ -96,7 +101,7 @@ module.exports = async() => {
         const icon = `<link rel="icon" href="${imgUrl}">`;
         const image = `<img src="${imgUrl}" width="100px" height="100px" alt="Modmail Logo"></img>`;
 
-        res.render('log', { threadInfo, meta, messages, title, icon, image });
+        res.render('log', { threadInfo, meta, messages, title, icon, image, config, chroma });
     })
 
     app.get('/assets/:file', (req, res) => {

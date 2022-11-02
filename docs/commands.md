@@ -8,12 +8,14 @@
 > - ``!subscribe`` - Subscribe to a thread
 > - ``!unsubscribe`` - Unsubscribe from a thread
 > - ``!close`` - Close a thread
+> - ``!loglink`` - Get the loglink for a thread
 
 ### Management-based Commands
 > - ``!setup [category_id]`` - Setup a server to use modmail
 > - ``!plugins <add|remove|list> [github_url]`` - Manage installed modmail plugins
 > - ``!block [user]`` - Blocks a user. Defaults to the user of the thread the command is run in, if run in a thread
 > - ``!unblock [user]`` - Unblocks a user. Defaults to the user of the thread the command is run in, if run in a thread
+> - ``!config <help|option> <value>`` - Configure various features of the bot
 
 ### Utility-based Commands
 > - ``!help`` - View bot commands

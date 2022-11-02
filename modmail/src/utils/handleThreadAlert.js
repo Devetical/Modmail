@@ -1,4 +1,4 @@
-module.exports.handleThreadAlert = async(client, message, operation) => {
+module.exports.handleThreadAlert = async(client, message, operation, guildData) => {
     const thread = await client.models.logs.findOne({ _id: message.channel.id });
     if (!thread) return client.embeds.error({
         message: message,
