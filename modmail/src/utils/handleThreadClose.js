@@ -21,7 +21,6 @@ module.exports.handleThreadClose = async(client, message, guildData) => {
     
     thread.send({ embeds: [ closeEmbed ] });
 
-    console.log(guildData.config.thread_close_message)
     const closeMessage = new EmbedBuilder()
         .setColor('Red')
         .setTitle(`Thread Closed`)
