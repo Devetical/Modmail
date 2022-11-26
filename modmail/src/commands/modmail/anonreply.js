@@ -4,6 +4,7 @@ class Anonreply extends Command {
     constructor() {
         super({
             name: 'anonreply',
+            aliases: [ 'ar' ],
             description: 'Anonymously reply to a user in a modmail thread',
             usage: '``{PREFIX}anonreplyreply <message>``',
             category: 'modmail'

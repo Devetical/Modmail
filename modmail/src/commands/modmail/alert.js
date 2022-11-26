@@ -4,6 +4,7 @@ class Alert extends Command {
     constructor() {
         super({
             name: 'alert',
+            aliases: [ 'al' ],
             description: 'Get notified on the next message send by a user to a modmail thread',
             usage: '``{PREFIX}alert``',
             category: 'modmail'

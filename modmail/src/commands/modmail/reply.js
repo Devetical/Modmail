@@ -4,6 +4,7 @@ class Reply extends Command {
     constructor() {
         super({
             name: 'reply',
+            aliases: [ 'r' ],
             description: 'Reply to a user in a modmail thread',
             usage: '``{PREFIX}reply <message>``',
             category: 'modmail'

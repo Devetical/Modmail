@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Guild', {
     _id: { type: String, required: true },
-    prefix: { type: String, required: true, default: '!' },
     setup: { type: Boolean, required: true, default: false },
     managers: { type: Array, required: true, default: [] },
     modmail_role: { type: String, required: true, default: 'not setup' },
@@ -29,6 +28,9 @@ module.exports = mongoose.model('Guild', {
 
         // Thread general configuration
         auto_alert_last_response: false,
+
+        // Modmail
+        prefix: '!',
     } },
 })
 

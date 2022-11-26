@@ -14,12 +14,17 @@
     "axios": "^0.27.2",
     "chroma-js": "^2.4.2",
     "colors": "^1.4.0",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "https": "^1.0.0",
     "mongoose": "^6.5.2",
+    "passport": "^0.6.0",
+    "passport-discord": "^0.1.4",
     "path": "^0.12.7"
   }
 }

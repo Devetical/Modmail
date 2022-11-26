@@ -12,7 +12,7 @@ To install modmail and get it running on your system, it's as simple as 1, 2, 3.
 3) Run ``npm run start`` to bring the bot online
 
 ### Docs
-- 🤖 [Additional Configuration](./docs/additional_configuration.md)
+- 🤖 Additional Configuration -> Moved to it's own bot command. Type ``!config help`` to get started
 - 🛠️ [Plugins/Plugin Development](./docs/plugins.md)
 - 💻 [Command List](./docs/commands.md)
 

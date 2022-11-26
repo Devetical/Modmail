@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Log Not Found</title>
+        <title>Modmail Logviewer</title>
         <%- meta %>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi">
+        <link rel="stylesheet" href="../assets/welcome-style.css">
+        <script src="../assets/script.js"></script>
     </head>
-    <style>
-        .threadInfo {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .subtext {
-            color: #999;
-        }
-    </style>
-    <body style="background-color: lightgray;">
-        <div class="threadInfo">
-            <%- image %>
-            <h1>Couldn't find log with id <%- log_id %></h1>
-            <p class="subtext">Please go to /logs/log_id to view logs</p>
+    <body>
+        <div class="container">
+            <label class="switch">
+                <input type="checkbox" id="darkmode" onclick="toggleDarkMode()">
+                <span class="slider round"></span>
+            </label>
+            <br>
+            <div class="welcomeInfo text">
+                <%- image %>
+                <h1 class="text">Couldn't find log with id <%- log_id %></h1>
+                <p class="subtext">Please go to /logs/log_id to view logs, OR</p>
+                <br>
+                <br>
+                <input type="text" id="ticketId" class="gototicket" placeholder="Input a ticket ID">
+                <br>
+                <button onclick="goToTicket()">To go ticket</button>
+            </div>
         </div>
     </body>
 </html>

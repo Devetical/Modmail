@@ -18,7 +18,9 @@ const options = {
 
     // Thread general configuration
     auto_alert_last_response: { prop: 'auto_alert_last_response', description: 'Toggle whether staff members should be auto-alerted to the next message sent in threads if they reply', type: 'boolean' },
-    
+
+    // Modmail
+    prefix: { prop: 'prefix', description: 'The prefix to be used for bot commands', type: 'string' },
 }
 
 class Config extends Command {
@@ -63,9 +65,9 @@ class Config extends Command {
 
             const configHelpEmbed = new EmbedBuilder()
                 .setTitle('Modmail Configuration Help')
-                .setDescription(`Here is a list of all the options you can configure with the \`\`${guildData.prefix}config\`\` command.\n\n${configurations.join('\n')}`)
+                .setDescription(`Here is a list of all the options you can configure with the \`\`${guildData.config.prefix}config\`\` command.\n\n${configurations.join('\n')}`)
                 .setColor('Green')
-                .setFooter({ text: `Set the value of an option by using ${guildData.prefix}config <option> <value>` })
+                .setFooter({ text: `Set the value of an option by using ${guildData.config.prefix}config <option> <value>` })
             
             return message.reply({ embeds: [configHelpEmbed] })
         }

@@ -4,6 +4,7 @@ class Unalert extends Command {
     constructor() {
         super({
             name: 'unalert',
+            aliases: [ 'una' ],
             description: 'Remove yourself from getting notified on the next message send by a user to a modmail thread',
             usage: '``{PREFIX}unalert``',
             category: 'modmail'

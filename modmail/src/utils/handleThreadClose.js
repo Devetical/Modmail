@@ -50,7 +50,14 @@ module.exports.handleThreadClose = async(client, message, guildData) => {
     const logEmbed = new EmbedBuilder()
         .setColor('Green')
         .setTitle(`Thread Log`)
-        .setDescription(`**User:** \`\`\`${threadUser.username}#${threadUser.discriminator} (${threadUser.id})\`\`\`\n\n**Closed By:** \`\`\`${message.author.username}#${message.author.discriminator} (${message.author.id})\`\`\`\n\n**Closed At:** \`\`\`${new Date().toLocaleString()}\`\`\`\n\n**Thread ID:** \`\`\`${thread.id}\`\`\`\n\n**Thread Link:** [Click Here](${logUrl(thread.id)})`)
-    
+        .addFields([
+            { name: `User`, value: threadUser.username + '#' + threadUser.discriminator, inline: true },
+            { name: `User ID`, value: threadUser.id, inline: true },
+            { name: `Closed By`, value: message.author.username + '#' + message.author.discriminator, inline: true },
+            { name: `Closed At`, value: '<t:' + String(message.createdTimestamp / 1000).split('.')[0] + ':R>', inline: true },
+            { name: `Thread ID`, value: thread.id, inline: true },
+            { name: `Log URL`, value: `[Click Here](${logUrl(thread.id)})`, inline: true }
+        ])
+
     return logChannel.send({ embeds: [ logEmbed ] });
 }

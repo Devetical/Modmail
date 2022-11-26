@@ -5,6 +5,7 @@ class Loglink extends Command {
     constructor() {
         super({
             name: 'loglink',
+            aliases: [ 'll' ],
             description: 'Get a loglink for the current thread',
             usage: '``{PREFIX}loglink``',
             category: 'modmail'
@@ -28,8 +29,6 @@ class Loglink extends Command {
                 error: `This command can only be run in a modmail thread`
             }
         });
-
-        console.log(generateLink(message.channel.id));
         
         return client.embeds.success({
             message: message,

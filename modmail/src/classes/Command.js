@@ -4,6 +4,7 @@ class Command {
         this.description = props.description;
         this.usage = props.usage;
         this.category = props.category;
+        this.aliases = props.aliases;
     } 
 }
 

@@ -1,6 +1,5 @@
 const { DMChannel } = require('discord.js');
 const Event = require('../classes/Event');
-const { handleModmail } = require('../utils/handleUserMessage');
 
 class MessageCreateEvent extends Event {
     constructor() {
@@ -21,11 +20,12 @@ class MessageCreateEvent extends Event {
             return client.handleUserMessage(client, message, guildData, userData);
         }
 
-        if (!message.content.startsWith(guildData.prefix)) return;
-
-        const args = message.content.slice(guildData.prefix.length).trim().split(/ +/);
+        if (!message.content.startsWith(guildData.config.prefix)) return;
+        
+        const args = message.content.slice(guildData.config.prefix.length).trim().split(/ +/);
         const cmdName = args.shift().toLowerCase();
-        const cmd = client.commands.get(cmdName);
+        const cmd = client.commands.get(cmdName)
+            || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 
         if (!cmd) return;
 
@@ -34,8 +34,11 @@ class MessageCreateEvent extends Event {
             message: message,
             guildData: guildData,
             userData: userData,
-            args: args
+            args: args,
+            cmd: cmd,
+            cmdName: cmdName
         }
+        
         cmd.run(usage);
     }
 }

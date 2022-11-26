@@ -4,6 +4,7 @@ class Unsubscribe extends Command {
     constructor() {
         super({
             name: 'unsubscribe',
+            aliases: [ 'unsub' ],
             description: 'Unsubscribe from a modmail thread',
             usage: '``{PREFIX}unsubscribe``',
             category: 'modmail'

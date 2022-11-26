@@ -9,8 +9,8 @@ Current (public) version: **0.1**
 - [x] Anonymous replies
 - [x] Thread subscriptions/alerts
 - [x] Thread closure
+- [x] Snippet creation/deletion/editing/listing
 - [ ] Threadnotes`
-- [ ] Snippet creation/deletion/editing/listing
 - [ ] Aliasing?
 - [ ] Modmail permissions
 - [ ] Modmail management dashboard (web)
@@ -30,10 +30,10 @@ Current (public) version: **0.1**
 - [x] Logviewer backend service
 - [x] Logviewer frontend service
 - [x] HTML logviewer setup
+- [x] Light/dark toggle
 - [ ] Rendering (see below)
 > - Images
 > - Codeblock
 > - Spoilers
 > - And more!
 - [ ] Logviewer oauth requirement
-- [ ] Light/dark toggle

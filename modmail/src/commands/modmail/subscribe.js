@@ -4,6 +4,7 @@ class Subscribe extends Command {
     constructor() {
         super({
             name: 'subscribe',
+            aliases: [ 'sub' ],
             description: 'Subscribe to a modmail thread',
             usage: '``{PREFIX}subscribe``',
             category: 'modmail'

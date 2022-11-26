@@ -1,0 +1,133 @@
+body {
+    background-color: lightgray;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    padding-top: 2.5%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1vw;
+}
+
+.dark-mode {
+    background-color: #282b30;
+}
+
+.dark-mode .container {
+    background-color: #424549;
+}
+
+.dark-mode .text {
+    color: white;
+}
+
+.switch {
+    float: left;
+    object-position: left;
+    position: absolute;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: darkgray;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px darkgrey;
+}
+
+input:focus + body {
+    animation: dark-mode 1s;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.subtext {
+    color: lightgray;
+}
+
+.text {
+    color: black;
+}
+
+.container {
+    height: 75%;
+    width: 75%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    border-radius: .75vw;
+    padding: 1vw;
+    margin: 0 auto;
+}
+
+.welcomeInfo {
+    text-align: center;
+}
+
+.gototicket {
+    text-align: center;
+    width: 25%;
+    height: 30px;
+    box-sizing: border-box;
+    border-color: black;
+    border: 1px solid;
+    border-radius: 1vw;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.gototicket:focus {
+    border: 2px solid black;
+}
+
+button {
+    height: 5%;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 1vw;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

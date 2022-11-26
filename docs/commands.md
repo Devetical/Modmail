@@ -9,6 +9,8 @@
 > - ``!unsubscribe`` - Unsubscribe from a thread
 > - ``!close`` - Close a thread
 > - ``!loglink`` - Get the loglink for a thread
+> - ``!snippets`` - Manage snippets
+> - ``!s / !as`` - Send a snippet, or anonymously send a snippet
 
 ### Management-based Commands
 > - ``!setup [category_id]`` - Setup a server to use modmail
