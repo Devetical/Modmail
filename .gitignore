@@ -1,5 +1,6 @@
-/node_modules
-/package-lock.json
-/.env
-/registerCmds.js
-/src/events/interactionCreate.js
+node_modules
+package-lock.json
+.env
+registerCmds.js
+src/events/interactionCreate.js
+.prettierignore
