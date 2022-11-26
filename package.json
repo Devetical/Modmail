@@ -1,7 +1,7 @@
 {
-  "name": "tutorials",
-  "version": "1.0.0",
-  "description": "",
+  "name": "modmail",
+  "version": "1.2.0.2",
+  "description": "A easy to use, modular Discord Modmail bot + logviewer written in Discord.js, Express and EJS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
