@@ -31,9 +31,9 @@ Current (public) version: **0.1**
 - [x] Logviewer frontend service
 - [x] HTML logviewer setup
 - [x] Light/dark toggle
+- [x] Logviewer oauth requirement
 - [ ] Rendering (see below)
 > - Images
 > - Codeblock
 > - Spoilers
 > - And more!
-- [ ] Logviewer oauth requirement
