@@ -2,6 +2,7 @@ const Event = require('../classes/Event');
 const colors = require('colors');
 const { renameSync, existsSync, readdirSync } = require('fs');
 const { join } = require('path');
+const { ActivityType } = require('discord.js');
 
 class ReadyEvent extends Event {
     constructor() {
@@ -56,6 +57,7 @@ class ReadyEvent extends Event {
         }
 
         console.log(`[READY]`.green + ` Logged in as ${client.user.tag}`);
+        client.user.setActivity('for DMs', { type: ActivityType.Watching })
     }
 }
 

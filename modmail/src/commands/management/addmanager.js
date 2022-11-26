@@ -16,7 +16,7 @@ class AddManager extends Command {
 
         let member = message.mentions.users.first();
         if (!member) {
-            if (!message.guild.members.cache.get(args[0])) client.embeds.error({
+            if (!message.guild.members.cache.get(args[0])) return client.embeds.error({
                 message: message,
                 options: {
                     error: `Invalid user provided. Please either mention a user or provide a user ID.`
