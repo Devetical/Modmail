@@ -6,7 +6,7 @@ class Subscribe extends Command {
             name: 'subscribe',
             aliases: [ 'sub' ],
             description: 'Subscribe to a modmail thread',
-            usage: '``{PREFIX}subscribe``',
+            usage: '{PREFIX}subscribe',
             category: 'modmail'
         })
     }

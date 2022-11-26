@@ -5,7 +5,7 @@ class Close extends Command {
         super({
             name: 'close',
             description: 'Close a modmail thread',
-            usage: '``{PREFIX}close``',
+            usage: '{PREFIX}close',
             category: 'modmail'
         })
     }

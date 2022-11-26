@@ -6,7 +6,7 @@ class Unsubscribe extends Command {
             name: 'unsubscribe',
             aliases: [ 'unsub' ],
             description: 'Unsubscribe from a modmail thread',
-            usage: '``{PREFIX}unsubscribe``',
+            usage: '{PREFIX}unsubscribe',
             category: 'modmail'
         })
     }

@@ -6,6 +6,7 @@ class RemoveManager extends Command {
         super({
             name: 'remmanager',
             description: 'Remove a bot manager',
+            aliases: [ 'remm' ],
             usage: '{PREFIX}remmanager <user>',
             category: 'management',
         })

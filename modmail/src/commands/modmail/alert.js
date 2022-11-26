@@ -6,7 +6,7 @@ class Alert extends Command {
             name: 'alert',
             aliases: [ 'al' ],
             description: 'Get notified on the next message send by a user to a modmail thread',
-            usage: '``{PREFIX}alert``',
+            usage: '{PREFIX}alert',
             category: 'modmail'
         })
     }

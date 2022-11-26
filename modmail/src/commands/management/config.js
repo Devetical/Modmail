@@ -28,7 +28,8 @@ class Config extends Command {
         super({
             name: 'config',
             description: 'Configure the bot',
-            usage: '``{PREFIX}config <option> <value>``',
+            aliases: [ 'conf', 'cfg' ],
+            usage: '{PREFIX}config <option> <value>',
             category: 'management'
         })
     }

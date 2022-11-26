@@ -8,7 +8,8 @@ class Plugins extends Command {
         super({
             name: 'plugins',
             description: 'Plugin management commands',
-            usage: '``{PREFIX}plugin [add|remove|list] <github_link|plugin_name>``',
+            aliases: [ 'plugin', 'plg' ],
+            usage: '{PREFIX}plugin [add|remove|list] <github_link|plugin_name>',
             category: 'management'
         })
     }

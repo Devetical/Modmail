@@ -7,7 +7,7 @@ class Loglink extends Command {
             name: 'loglink',
             aliases: [ 'll' ],
             description: 'Get a loglink for the current thread',
-            usage: '``{PREFIX}loglink``',
+            usage: '{PREFIX}loglink',
             category: 'modmail'
         })
     }

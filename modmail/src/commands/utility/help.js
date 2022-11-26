@@ -7,7 +7,7 @@ class Help extends Command {
             name: 'help',
             description: 'Get info on the bot\'s commands',
             category: 'utility',
-            usage: '``{PREFIX}help [command]``',
+            usage: '{PREFIX}help [command]',
         })
     }
 
@@ -25,7 +25,7 @@ class Help extends Command {
             })
 
             const fields = [
-                { name: 'Usage', value: cmd.usage.replace(/{PREFIX}/g, guildData.config.prefix) },
+                { name: 'Usage', value: `\`\`\`${cmd.usage.replace(/{PREFIX}/g, guildData.config.prefix)}\`\`\`` },
                 { name: 'Category', value: cmd.category[0].toUpperCase() + cmd.category.slice(1) },
                 { name: 'Aliases', value: cmd.aliases?.length ? cmd.aliases.join(', ') : 'None' }
             ]

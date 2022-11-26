@@ -5,7 +5,7 @@ class Snippets extends Command {
         super({
             name: 'snippets',
             description: 'Manage and send modmail snippets.\n\nNote: You can use the ``s`` and ``as`` commands to send snippets, with ``s`` being non-anonymous and ``as`` being anonymous.',
-            usage: '``{PREFIX}snippets <add|edit|delete|name> <name> <content>``',
+            usage: '{PREFIX}snippets <add|edit|delete|name> <name> <content>',
             category: 'management',
             aliases: [ 'snippet', 's', 'as' ]
         })

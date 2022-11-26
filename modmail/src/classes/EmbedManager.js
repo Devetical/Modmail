@@ -11,7 +11,7 @@ class EmbedManager {
 
         const embed = new EmbedBuilder()
             .setColor('Green')
-            .setDescription('<:success:993459347021631498> ' + options.description)
+            .setDescription(':white_check_mark: ' + options.description)
         
         if (options.author && typeof options.author === 'boolean') embed.setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ format: 'png' })})
         if (options.footer && typeof options.footer === 'object') embed.setFooter(options.footer)
@@ -28,7 +28,7 @@ class EmbedManager {
 
         const embed = new EmbedBuilder()
             .setColor('Red')
-            .setDescription('<:error:993458753972211754> ' + options.error)
+            .setDescription(':x: ' + options.error)
         
         if (options.author && typeof options.author === 'boolean') embed.setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ format: 'png' })})
         if (options.footer && typeof options.footer === 'object') embed.setFooter(options.footer)

@@ -6,6 +6,7 @@ class AddManager extends Command {
         super({
             name: 'addmanager',
             description: 'Add a bot manager',
+            aliases: [ 'addm' ],
             usage: '{PREFIX}addmanager <user>',
             category: 'management',
         })

@@ -57,10 +57,15 @@ module.exports = async() => {
 
     mongoConnect();
 
+    if (!process.env.LOGVIEWER_REDIRECT) {
+        console.log(`[LOGVIEWER]`.red + ` LOGVIEWER_REDIRECT is not set in your .env file. Please set it to the URL of your modmail instance.`);
+        process.exit(1);
+    }
+
     passport.use(new DiscordAuthClient({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: process.env.LOGVIEWER_REDIRECT ? `${process.env.LOGVIEWER_HTTPS ? 'https' : 'http'}://${process.env.LOGVIEWER_URL}${process.env.LOGVIEWER_REDIRECT}` : `${process.env.LOGVIEWER_HTTPS ? 'https' : 'http'}://${process.env.LOGVIEWER_URL}/`,
+        callbackURL: `${process.env.LOGVIEWER_HTTPS ? 'https' : 'http'}://${process.env.LOGVIEWER_URL}${process.env.LOGVIEWER_REDIRECT}`,
         scope: DiscordAuthScopes
     }, async (accessToken, refreshToken, profile, done) => {
         const guild = await mongoose.model('Guild').findOne({ _id: process.env.MODMAIL_GUILD });
@@ -91,9 +96,9 @@ module.exports = async() => {
     app.set('view engine', 'ejs');
     app.set('views', join(__dirname, 'views'));
     app.use(session({
-        secret: 'qaz1wsx2edc3rfv4tgb5yhn6ujm7ik8ol9p0',
+        secret: process.env.LOGVIEWER_SESSION_SECRET,
         cookie: {
-            maxAge: 60000 * 60 * 24 * 7
+            maxAge: 60000 * 10
         },
         resave: false,
         saveUninitialized: false,
@@ -113,7 +118,7 @@ module.exports = async() => {
     });
 
     app.get('/auth', passport.authenticate('discord'));
-    app.get('/auth/redirect', passport.authenticate('discord', {
+    app.get(process.env.LOGVIEWER_REDIRECT, passport.authenticate('discord', {
         failureRedirect: '/',
     }), (req, res) => {
         res.cookie('user', req.user.id);

@@ -6,7 +6,7 @@ class Unalert extends Command {
             name: 'unalert',
             aliases: [ 'una' ],
             description: 'Remove yourself from getting notified on the next message send by a user to a modmail thread',
-            usage: '``{PREFIX}unalert``',
+            usage: '{PREFIX}unalert',
             category: 'modmail'
         })
     }

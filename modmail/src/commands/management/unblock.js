@@ -5,7 +5,8 @@ class Unblock extends Command {
         super({
             name: 'unblock',
             description: 'Unblock a user',
-            usage: '``{PREFIX}Unblock <user>``',
+            aliases: [ 'ubl' ],
+            usage: '{PREFIX}Unblock <user>',
             category: 'management'
         })
     }

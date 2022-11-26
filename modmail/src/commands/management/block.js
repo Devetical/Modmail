@@ -5,7 +5,8 @@ class Block extends Command {
         super({
             name: 'block',
             description: 'Block a user',
-            usage: '``{PREFIX}block <user>``',
+            aliases: [ 'bl' ],
+            usage: '{PREFIX}block <user>',
             category: 'management'
         })
     }

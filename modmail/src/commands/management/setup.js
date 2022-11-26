@@ -6,7 +6,7 @@ class Setup extends Command {
         super({
             name: 'setup',
             description: 'Setup modmail',
-            usage: '``{PREFIX}setup [category_id]``',
+            usage: '{PREFIX}setup [category_id]',
             category: 'management'
         });
     }
