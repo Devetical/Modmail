@@ -12,9 +12,9 @@ To install modmail and get it running on your system, it's as simple as 1, 2, 3.
 3) Run ``npm run start`` to bring the bot online
 
 **Note:** A couple of things required to setup the bot with certain configurations (i.e Logviewer/Plugins) require extra configuration details, which can be accessed at the following links -
-> Plugins - [GitHub](https://github.com) click your profile -> settings -> developer settings -> personal access tokens -> fine-grained tokens -> generate new token
-> Logviewer (oauth requirement) - [Discord Developer Portal](https://discord.com/developers/applications) click the bot application -> oauth2 -> reset secret -> add the new secret which appears to your .env
-> Logviewer (redirect) - [Discord Developer Portal](https://discord.com/developers/applications) click the bot application -> oauth2 -> Add a redirect
+> - Plugins - [GitHub](https://github.com) click your profile -> settings -> developer settings -> personal access tokens -> fine-grained tokens -> generate new token
+> - Logviewer (oauth requirement) - [Discord Developer Portal](https://discord.com/developers/applications) click the bot application -> oauth2 -> reset secret -> add the new secret which appears to your .env
+> - Logviewer (redirect) - [Discord Developer Portal](https://discord.com/developers/applications) click the bot application -> oauth2 -> Add a redirect
 
 ### Docs
 - 🤖 Additional Configuration -> Moved to it's own bot command. Type ``!config help`` to get started
