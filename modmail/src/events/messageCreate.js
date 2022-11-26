@@ -9,8 +9,8 @@ class MessageCreateEvent extends Event {
     async run(client, message) {
         if (message.author.bot) return;
 
-        const guildData = await client.models.guilds.findOne({ _id: process.env.MAIN_GUILD })
-            || await new client.models.Guild({ _id: process.env.MAIN_GUILD }).save();
+        const guildData = await client.models.guilds.findOne({ _id: process.env.MODMAIL_GUILD })
+            || await new client.models.Guild({ _id: process.env.MODMAIL_GUILD }).save();
         const userData = await client.models.users.findOne({ _id: message.author.id })
             || await new client.models.User({ _id: message.author.id }).save();
 
