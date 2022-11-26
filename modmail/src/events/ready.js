@@ -43,7 +43,6 @@ class ReadyEvent extends Event {
 
                 // pluginFile = require(`../plugins/${plugin.name}.js`);
 
-                console.log(pluginFile)
                 for (const command of Object.keys(pluginFile).filter(i => i !== 'plugin')) {
                     let cmd = pluginFile[command]
                     if (!client.commands.get(cmd.name)) {
