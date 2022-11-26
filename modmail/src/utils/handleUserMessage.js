@@ -6,7 +6,7 @@ module.exports.handleUserMessage = async (client, message, guildData, userData) 
         return client.embeds.error({
             message: message,
             options: {
-                error: `Modmail is not setup! Please have a server manager run the \`\`${guildData.prefix}setup\`\` command to get started`,
+                error: `Modmail is not setup! Please have a server manager run the \`\`${guildData.config.prefix}setup\`\` command to get started`,
                 userAuthor: false
             },
         })

@@ -28,7 +28,7 @@ class Plugins extends Command {
             return client.embeds.error({
                 message: message,
                 options: {
-                    error: `Invalid command format. Command usage: ${this.usage.replace('{PREFIX}', guildData.prefix)}`
+                    error: `Invalid command format. Command usage: ${this.usage.replace('{PREFIX}', guildData.config.prefix)}`
                 }
             })
         }
@@ -44,12 +44,25 @@ class Plugins extends Command {
 
         if (cmd === 'add') {
             let link = args.slice(1).join('');
+            const REGEX = {
+                "REPO": /https:\/\/github.com\/([A-z0-9-]+)\/([A-z0-9-_]+)\/[blob|tree]+\/[main|master]+\/([A-z0-9-_\/]+.js)$/g,
+                "GIST": /https:\/\/gist\.github\.com\/([A-z0-9-]+)\/([A-z0-9]+)/g,
+            }
 
-            if (link.match(/https:\/\/github.com\/[A-z0-9-_]+\/[A-z0-9-_]+\/[blob|tree]+\/[main|master]+\/([A-z0-9-_\/])+.js$/g)) {
-                const repoDetails = link.slice('19').split('/').filter(i => ![ 'blob', 'tree', 'main', 'master' ].includes(i))
-                link = `https://api.github.com/repos/${repoDetails[0]}/${repoDetails[1]}/contents/${repoDetails[2]}/${repoDetails[3]}`;
+            if (link.match(REGEX["REPO"])) {
+                const repoDetails = REGEX["REPO"].exec(link);
+                repoDetails.shift();
 
-                return installPlugin(client, message, guildData, link, repoDetails[2])
+                link = `https://api.github.com/repos/${repoDetails[0]}/${repoDetails[1]}/contents/${repoDetails[2]}`;
+
+                return installPlugin(client, message, guildData, link, "repo")
+            } else if (link.match(REGEX["GIST"])) {
+                const repoDetails = REGEX["GIST"].exec(link);
+                repoDetails.shift();
+
+                link = `https://api.github.com/gists/${repoDetails[1]}`;
+
+                return installPlugin(client, message, guildData, link, "gist")
             } else return client.embeds.error({
                 message: message,
                 options: {

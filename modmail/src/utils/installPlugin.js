@@ -3,26 +3,48 @@ const { writeFileSync, rename, unlinkSync, existsSync, renameSync } = require('f
 const { join } = require("path");
 const colors = require('colors');
 
-module.exports.installPlugin = async (client, message, guildData, link) => {
+module.exports.installPlugin = async (client, message, guildData, link, type = "repo") => {
     let code;
-    
-    try {
-        code = await get(link, {
-            headers: {
-                'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
-            }
-        });
-    } catch (e) {
-        console.log(`[PLUGIN]`.red + ` Failed to install plugin ${link}.`);
-        return client.embeds.error({
-            message: message,
-            options: {
-                error: `Failed to install plugin \`\`${link}\`\`! Do you have the correct github link?.`
-            }
-        })
+
+    if (type == "repo") {
+        try {
+            code = await get(link, {
+                headers: {
+                    'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
+                }
+            });
+        } catch (e) {
+            console.log(`[PLUGIN]`.red + ` Failed to install plugin ${link}.`);
+            return client.embeds.error({
+                message: message,
+                options: {
+                    error: `Failed to install plugin \`\`${link}\`\`! Do you have the correct GitHub link?.`
+                }
+            })
+        }
+
+        code = atob(code.data.content);
+    } else if (type == "gist") {
+        try {
+            code = await get(link, {
+                headers: {
+                    'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
+                }
+            });
+
+        } catch (e) {
+            console.log(`[PLUGIN]`.red + ` Failed to install plugin ${link}.`);
+            return client.embeds.error({
+                message: message,
+                options: {
+                    error: `Failed to install plugin \`\`${link}\`\`! Do you have the correct GitHub link?.`
+                }
+            })
+        }
+
+        code = code.data.files["plugin.js"].content
     }
 
-    code = atob(code.data.content);
     const pluginInfo = eval(`${code}; module.exports['plugin']`)
     if (!pluginInfo || !pluginInfo.name) return client.embeds.error({
         message: message,
