@@ -122,7 +122,7 @@ module.exports = async() => {
         failureRedirect: '/',
     }), (req, res) => {
         res.cookie('user', req.user.id);
-        res.cookie('accessToken', req.user.accessToken);
+        res.cookie('accessToken', req.user.accessToken, { maxAge: 60000 * 10 });
         res.redirect(`/logs/${req.cookies.thread_id}`);
     });
 

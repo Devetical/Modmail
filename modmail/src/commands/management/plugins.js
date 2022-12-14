@@ -87,6 +87,13 @@ class Plugins extends Command {
 
             const pluginData = guildData.installed_plugins.find(i => i.name === pluginName);
 
+            if (!pluginData) return client.embeds.success({
+                message: message,
+                options: {
+                    message: `The provided plugin is installed locally, however was not found in the database. I have successfully removed it's local data.`
+                }
+            });
+
             pluginData.commands_added?.forEach(command => {
                 client.commands.delete(command.name);
             });
